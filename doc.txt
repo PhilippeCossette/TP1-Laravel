@@ -1,1 +1,9 @@
-composer create-project laravel/laravel TP1-Laravel
+1. composer create-project laravel/laravel TP1-Laravel
+
+2.
+php artisan make:model Student
+php artisan make:model City
+
+3. php artisan make:migration students
+   php artisan make:migration cities
+   php artisan migrate

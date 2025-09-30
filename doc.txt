@@ -18,3 +18,7 @@ City::factory()->count(15)->create();
 6. use App\Models\Student
     use App\Models\City
     Student::factory()->count(100)->create();
+
+7. artisan make:controller HomeController
+artisan make:controller StudentController
+artisan make:controller CityController

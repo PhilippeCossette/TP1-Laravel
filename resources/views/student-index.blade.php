@@ -4,7 +4,10 @@
 
 <section>
     <div class="container py-4 max-1200">
-        <h1 class="mb-4">Liste des étudiants</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-4">Liste des étudiants</h1>
+            <button class="btn btn-primary" onclick="window.location='{{ route('students.create') }}'">Ajouter un étudiant</button>
+        </div>
         <div class="row g-4">
             @foreach ($students as $student)
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">

@@ -20,4 +20,10 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
     }
+
+    public function create()
+    {
+        $cities = City::all();
+        return view('student-create', ['cities' => $cities]);
+    }
 }

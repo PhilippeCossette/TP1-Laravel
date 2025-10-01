@@ -1,0 +1,26 @@
+@import "./composant/navigation.css";
+
+a {
+    all: unset;
+}
+
+.max-1200 {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.inactive {
+    display: none;
+}
+
+.active {
+    display: flex;
+}
+
+.btn-primary {
+    background-color: #0078C2;
+}
+
+.btn-primary:hover {
+    background-color: #035d96;
+}

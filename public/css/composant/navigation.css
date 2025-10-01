@@ -1,0 +1,118 @@
+.navigation {
+    display: flex;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.navigation-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    padding: 1em 2em;
+    z-index: 2;
+}
+
+.navigation-items-container {
+    display: flex;
+    gap: 2em;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation-logo > img {
+    max-width: 40px;
+    aspect-ratio: 1 / 1;
+}
+
+.navigation-item {
+    font-weight: 700;
+    transition: all 0.3s linear;
+    list-style: none;
+    cursor: pointer;
+}
+
+.navigation-item:hover {
+    color: #0078C2;
+ 
+}
+
+.navigation__mobile-menu {
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation__mobile-item-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    color: white;
+    border-radius: 10px;
+}
+
+.navigation__mobile-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: black;
+    padding-inline: 0.5em;
+    border-radius: 50%;
+    transition: all 0.3s linear;
+}
+
+.navigation__mobile-item:hover {
+    background-color: #dbdbdb;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+
+.navigation__mobile-item > .icon {
+    font-size: 1.8em;
+    font-weight: 100;
+    margin-top: 1px;
+}
+
+@media screen and (min-width: 800px) {
+    .navigation-items-container {
+        display: flex;
+    }
+
+    .navigation__mobile-menu {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .navigation-items-container {
+        display: none;
+    }
+
+    .navigation-container {
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 0.5em;
+    }
+
+    .navigation__mobile-menu {
+        display: flex;
+    }
+
+    .navigation {
+        flex-direction: column;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        box-shadow: none;
+    }
+
+    body {
+        display: flex;
+    }
+    main {
+        flex-grow: 1;
+    }       
+}

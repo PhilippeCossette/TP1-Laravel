@@ -43,6 +43,16 @@
     </nav>
 
     <main>
+        @if (session('success'))
+        <div class="container my-4">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Succès !</strong> {{session('success')}}.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        @endif
+
+        </div>
 
 
         @yield('content')

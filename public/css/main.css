@@ -1,6 +1,20 @@
 @import "./composant/navigation.css";
 @import "./composant/grow-effect.css";
 
+.btn-primary {
+    background-color: #0078c2;
+}
+
+.btn-outline-primary {
+    border: 1px solid #0078c2;
+    color: #0078c2;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0078c2;
+    color: white;
+}
+
 main {
     min-height: 80vh;
 }
@@ -24,4 +38,33 @@ main {
 
 .btn-primary:hover {
     background-color: #035d96;
+}
+
+/* All pagination links grey */
+.pagination .page-link {
+    color: #6c757d; /* Bootstrap gray */
+    background-color: #f8f9fa; /* light gray background */
+    border: 1px solid #dee2e6; /* border */
+}
+
+/* Hover effect */
+.pagination .page-link:hover {
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+/* Active page */
+.pagination .page-item.active .page-link {
+    background-color: #0078c2;
+    border-color: #0078c2;
+    color: white;
+}
+
+/* Disabled page */
+.pagination .page-item.disabled .page-link {
+    color: #adb5bd;
+    pointer-events: none;
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
 }

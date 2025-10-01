@@ -13,4 +13,11 @@ class StudentController extends Controller
         $students = Student::with('city')->paginate(16);
         return view('student-index', ['students' => $students]);
     }
+
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+    }
 }

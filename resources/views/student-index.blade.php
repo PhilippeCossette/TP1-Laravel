@@ -19,7 +19,11 @@
                     </div>
                     <div class="sliding-card-footer card-footer d-flex justify-content-between">
                         <button class="btn btn-outline-primary btn-sm">Voir les détails</button>
-                        <button class="btn btn-danger btn-sm">Supprimer</button>
+                        <form action="{{ route('students.destroy', $student->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
                     </div>
                 </div>
             </div>

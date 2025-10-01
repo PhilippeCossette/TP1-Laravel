@@ -27,14 +27,17 @@
 
 .navigation-item {
     font-weight: 700;
-    transition: all 0.3s linear;
     list-style: none;
-    cursor: pointer;
 }
 
-.navigation-item:hover {
-    color: #0078C2;
- 
+.navigation-item a {
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s linear;
+}
+
+.navigation-item:hover a {
+    color: #0078c2;
 }
 
 .navigation__mobile-menu {
@@ -68,7 +71,6 @@
     background-color: #dbdbdb;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
-
 
 .navigation__mobile-item > .icon {
     font-size: 1.8em;
@@ -114,5 +116,5 @@
     }
     main {
         flex-grow: 1;
-    }       
+    }
 }

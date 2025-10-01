@@ -8,5 +8,9 @@ use App\Models\City;
 
 class StudentController extends Controller
 {
-    //
+    public function index()
+    {
+        $students = Student::with('city')->get();
+        return view('students.index', ['students' => $students]);
+    }
 }

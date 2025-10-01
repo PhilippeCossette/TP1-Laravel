@@ -1,0 +1,94 @@
+.grow-effect {
+    display: flex;
+    gap: 1em;
+    width: 100%;
+    max-width: 100%;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.grow-effect-item {
+    flex: 1 1 0;
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    min-width: 0;
+    position: relative; /* key: allows absolute children like title */
+    transition: flex 0.5s ease, filter 0.3s ease;
+}
+
+.grow-effect-img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    filter: brightness(70%);
+
+    transition: filter 0.3s ease;
+}
+
+.grow-effect-title {
+    position: absolute;
+    top: 1em; /* stick to bottom */
+    left: 1em; /* stick to left */
+    color: white;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 1; /* ensures text is above img */
+    pointer-events: none; /* lets hover still trigger on parent */
+
+    opacity: 1;
+    transition: opacity 0.7s ease 0.35s;
+}
+
+.grow-effect-item:hover {
+    flex: 8;
+}
+
+.grow-effect-item:hover .grow-effect-img {
+    filter: brightness(30%);
+    transform: scale(1.05);
+}
+
+.grow-effect-content {
+    position: absolute;
+    color: white;
+    top: 4em;
+    left: 1.5em;
+    width: 100%;
+    z-index: 3;
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
+}
+
+.grow-effect-content p {
+    font-size: 1em;
+    line-height: 1.4;
+    max-width: 90%;
+    margin-bottom: 1em;
+}
+
+.grow-effect-item:hover .grow-effect-content {
+    opacity: 1;
+    transition: opacity 0.3s ease 0.3s;
+}
+
+.grow-effect:hover .grow-effect-item {
+    filter: brightness(0.5);
+}
+
+.grow-effect:hover .grow-effect-item:hover {
+    filter: brightness(1); /* keep the hovered one full brightness */
+}
+
+.grow-effect:hover .grow-effect-title {
+    opacity: 0; /* hide the title when hovered */
+    transition: opacity 0.3s ease;
+}
+
+.grow-effect:hover .grow-effect-item:hover .grow-effect-title {
+    opacity: 1; /* keep the hovered one full brightness */
+}

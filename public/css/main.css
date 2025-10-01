@@ -1,8 +1,7 @@
 @import "./composant/navigation.css";
+@import "./composant/grow-effect.css";
 
-a {
-    all: unset;
-}
+
 
 .max-1200 {
     max-width: 1200px;

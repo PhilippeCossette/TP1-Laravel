@@ -68,3 +68,29 @@ main {
     background-color: #f8f9fa;
     border-color: #dee2e6;
 }
+
+.card {
+    position: relative;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.sliding-card-footer {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    transition: bottom 0.3s ease;
+    background-color: #f8f8f8;
+}
+
+.card:hover .sliding-card-footer {
+    bottom: 0;
+}
+
+.card-title {
+    margin: 0;
+}
+.card-title > span {
+    font-weight: bold;
+}

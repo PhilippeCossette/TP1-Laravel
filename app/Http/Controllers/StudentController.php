@@ -11,6 +11,6 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::with('city')->get();
-        return view('students.index', ['students' => $students]);
+        return view('student-index', ['students' => $students]);
     }
 }

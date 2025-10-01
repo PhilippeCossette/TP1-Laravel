@@ -10,8 +10,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $students = Student::all();
-        $cities = City::all();
-        return view('index', compact('students', 'cities'));
+        return view('index');
     }
 }

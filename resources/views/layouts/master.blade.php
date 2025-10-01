@@ -14,10 +14,10 @@
 <body>
     <nav class="navigation">
         <div class="navigation-container max-1200">
-            <a href="{{ route('index') }}" class="navigation-logo"><img src="{{ asset('images/Maisonneuve-logo.jpg') }}" alt="Logo "></a>
+            <a href="{{ route('home.index') }}" class="navigation-logo"><img src="{{ asset('images/Maisonneuve-logo.jpg') }}" alt="Logo "></a>
             <ul class="navigation-items-container">
-                <li class="navigation-item"><a href="">Accueil</a></li>
-                <li class="navigation-item"><a href="">Étudiants</a></li>
+                <li class="navigation-item"><a href="{{ route('home.index') }}">Accueil</a></li>
+                <li class="navigation-item"><a href="{{ route('students.index') }}">Étudiants</a></li>
                 <li class="navigation-item"><a href="">Contact</a></li>
                 <li class="navigation-item"><a href="">Information</a></li>
             </ul>
@@ -47,44 +47,44 @@
 
         @yield('content')
 
+        <footer class="bg-light text-dark mt-5">
+            <div class="container py-4">
+                <div class="row align-items-center">
+
+                    <!-- Navigation Links -->
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark px-2" href="#">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark px-2" href="#">Programmes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark px-2" href="#">À propos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark px-2" href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Copyright / Version -->
+                    <div class="col-md-6 text-md-end text-center">
+                        <small class="d-block">
+                            &copy; {{ date('Y') }} Collège Maisonneuve. Tous droits réservés.
+                        </small>
+                        <small class="d-block text-muted">
+                            Version 1.0.0
+                        </small>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
     </main>
 
 
-    <footer class="bg-light text-dark mt-5">
-        <div class="container py-4">
-            <div class="row align-items-center">
-
-                <!-- Navigation Links -->
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark px-2" href="#">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark px-2" href="#">Programmes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark px-2" href="#">À propos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark px-2" href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Copyright / Version -->
-                <div class="col-md-6 text-md-end text-center">
-                    <small class="d-block">
-                        &copy; {{ date('Y') }} Collège Maisonneuve. Tous droits réservés.
-                    </small>
-                    <small class="d-block text-muted">
-                        Version 1.0.0
-                    </small>
-                </div>
-
-            </div>
-        </div>
-    </footer>
 
 
 

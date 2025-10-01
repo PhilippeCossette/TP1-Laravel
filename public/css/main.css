@@ -1,7 +1,9 @@
 @import "./composant/navigation.css";
 @import "./composant/grow-effect.css";
 
-
+main {
+    min-height: 80vh;
+}
 
 .max-1200 {
     max-width: 1200px;
@@ -17,7 +19,7 @@
 }
 
 .btn-primary {
-    background-color: #0078C2;
+    background-color: #0078c2;
 }
 
 .btn-primary:hover {

@@ -92,3 +92,21 @@
 .grow-effect:hover .grow-effect-item:hover .grow-effect-title {
     opacity: 1; /* keep the hovered one full brightness */
 }
+
+@media screen and (max-width: 600px) {
+    .grow-effect {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .grow-effect-item {
+        flex: 1 1 auto;
+        max-height: 150px;
+        transition: flex 0.5s ease, max-height 0.5s ease, filter 0.3s ease;
+    }
+
+    .grow-effect-item:hover {
+        flex: 3; /* ✅ grow vertically */
+        max-height: 300px; /* also expand height */
+    }
+}

@@ -26,4 +26,21 @@ class StudentController extends Controller
         $cities = City::all();
         return view('student-create', ['cities' => $cities]);
     }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students,email',
+            'phone_number' => 'required|string|max:20',
+            'birth_date' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+            'address' => 'required|string|max:500',
+            'city_id' => 'required|exists:cities,id',
+        ]);
+
+        Student::create($validatedData);
+
+        return redirect()->route('students.index')->with('success', 'Student created successfully');
+    }
 }

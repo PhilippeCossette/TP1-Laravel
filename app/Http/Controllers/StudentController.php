@@ -43,4 +43,11 @@ class StudentController extends Controller
 
         return redirect()->route('students.index')->with('success', 'Student created successfully');
     }
+
+    public function edit($id)
+    {
+        $student = Student::findOrFail($id);
+        $cities = City::all();
+        return view('student-edit', ['student' => $student, 'cities' => $cities]);
+    }
 }

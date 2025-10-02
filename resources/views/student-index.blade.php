@@ -21,7 +21,7 @@
                             alt="Portrait" class="img-fluid rounded-circle" style="max-width: 100px;">
                     </div>
                     <div class="sliding-card-footer card-footer d-flex justify-content-between">
-                        <button class="btn btn-outline-primary btn-sm">Voir les détails</button>
+                        <button onclick="window.location='{{ route('students.edit', $student->id) }}'" class="btn btn-outline-primary btn-sm">Voir les détails</button>
                         <form action="{{ route('students.destroy', $student->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

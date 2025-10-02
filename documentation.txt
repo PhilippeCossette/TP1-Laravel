@@ -1,0 +1,40 @@
+
+Details Des Commandes Utilisées:
+
+-composer create-project laravel/laravel TP1-Laravel
+    Cette commande permert de créé un projet laravel
+
+-php artisan serve
+    Permet de démarrer le serveur
+
+-php artisan make:model Student
+-php artisan make:model City
+    Permert de créé les models de chaque table
+
+-php artisan make:migration students
+-php artisan make:migration cities
+-php artisan migrate
+    Crée les fichiers de migration pour définir la structure des tables students et cities.
+
+
+-php artisan make:factory StudentFactory --model=Student
+-php artisan make:factory CityFactory --model=City
+    Ces commandes créent des factories pour générer des fausses données pour les tables students et cities.
+
+
+-php artisan tinker
+-use App\Models\City;
+-City::factory()->count(15)->create();
+    Permet de créé 15 villes aléatoires grâce a factory
+
+
+-use App\Models\Student
+-use App\Models\City
+-Student::factory()->count(100)->create();
+    Crée 100 étudiants aléatoires avec des données générées par la factory.
+
+
+-artisan make:controller HomeController
+-artisan make:controller StudentController
+-artisan make:controller CityController
+    Permet de créé des controleurs

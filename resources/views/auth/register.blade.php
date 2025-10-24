@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Ajouter un étudiant')
+@section('title', 'Enregistrer vous!')
 @section('content')
 
 <section style="min-height: 100vh;">
@@ -21,7 +21,7 @@
 
         <!-- Form -->
         <div class="d-flex flex-fill justify-content-center" style="min-width: 300px; max-width: 600px; flex: 1 1 45%;">
-            <form action="{{ route('students.store') }}" method="POST" class="p-4 border shadow bg-light w-100">
+            <form action="{{ route('register.store') }}" method="POST" class="p-4 border shadow bg-light w-100">
                 @csrf
                 <div class="mb-3">
                     <label for="first_name" class="form-label">Prénom</label>
@@ -43,6 +43,18 @@
                     @error('email')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" name="password" class="form-control" required>
+                    @error('password')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="password_confirmation" class="form-label">Confirmer le mot de passe</label>
+                    <input type="password" name="password_confirmation" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="phone_number" class="form-label">Téléphone</label>

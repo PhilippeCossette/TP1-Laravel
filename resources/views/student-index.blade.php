@@ -21,11 +21,13 @@
                     </div>
                     <div class="sliding-card-footer card-footer d-flex justify-content-between">
                         <button onclick="window.location='{{ route('students.show', $student->id) }}'" class="btn btn-outline-primary btn-sm">Voir les détails</button>
-                        <form action="{{ route('students.destroy', $student->id) }}" method="POST">
+                        @if (auth()->check() && auth()->id() === $student->user_id)
+                        <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-sm">Supprimer</button>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>

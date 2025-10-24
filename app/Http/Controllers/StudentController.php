@@ -18,6 +18,11 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
+
+        if (auth()->id() !== $student->user_id) {
+            return redirect()->route('students.index')->with('error', 'Vous n\'êtes pas autorisé à supprimer cet étudiant.');
+        }
+
         $student->delete();
         return redirect()->route('students.index')->with('success', 'Etudiant supprimé avec succès.');
     }
@@ -54,6 +59,11 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::findOrFail($id);
+
+        if (auth()->id() !== $student->user_id) {
+            return redirect()->route('students.index')->with('error', 'Vous n\'êtes pas autorisé à modifier cet étudiant.');
+        }
+
         $cities = City::all();
         return view('student-edit', ['student' => $student, 'cities' => $cities]);
     }

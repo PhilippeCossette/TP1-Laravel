@@ -15,11 +15,11 @@
     <nav class="navigation">
         <div class="navigation-container max-1200">
             <a href="{{ route('home.index') }}" class="navigation-logo"><img src="{{ asset('images/Maisonneuve-logo.jpg') }}" alt="Logo "></a>
-            <ul class="navigation-items-container">
+            <ul class="navigation-items-container d-flex gap-3 align-items-center list-unstyled">
                 <li class="navigation-item"><a href="{{ route('home.index') }}">Accueil</a></li>
                 <li class="navigation-item"><a href="{{ route('students.index') }}">Étudiants</a></li>
                 <li class="navigation-item"><a href="">Contact</a></li>
-                <li class="navigation-item"><a href="">Information</a></li>
+                <li class=""><a href="{{ route('login') }}" class="btn btn-primary">Login</a></li>
             </ul>
             <div class="navigation__mobile-menu">
                 <div class="navigation__mobile-item-container">
@@ -47,6 +47,14 @@
         <div class="container my-4">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Succès !</strong> {{session('success')}}.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        @endif
+        @if (session('error'))
+        <div class="container my-4">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Erreur !</strong> {{session('error')}}.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>

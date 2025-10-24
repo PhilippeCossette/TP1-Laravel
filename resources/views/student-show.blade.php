@@ -8,12 +8,22 @@
         <header class="d-flex align-items-center mb-4 gap-3">
             <img class="rounded-pill" style="max-width: 100px;" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="">
             <div>
-                <button onclick="window.location.href='{{ route('students.edit', $student->id) }}'" class="btn btn-primary">Modifier</button>
-                <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
+                @if (auth()->check() && auth()->user()->id === $student->user_id)
+                <button
+                    onclick="window.location.href='{{ route('students.edit', $student->id) }}'"
+                    class="btn btn-primary">
+                    Modifier
+                </button>
+
+                <form
+                    action="{{ route('students.destroy', $student->id) }}"
+                    method="POST"
+                    style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </form>
+                @endif
             </div>
         </header>
         <div class="d-flex flex-column gap-2">

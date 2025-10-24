@@ -1,0 +1,2 @@
+php artisan make:migration add_user_id_to_students_table --table=students
+php artisan migrate

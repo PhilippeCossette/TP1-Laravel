@@ -47,7 +47,7 @@ class AuthController extends Controller
         ]);
 
         auth()->login($user);
-        var_dump(auth()->user());
+
         return redirect()->route('home.index')->with('success', 'Registration successful!');
     }
 }

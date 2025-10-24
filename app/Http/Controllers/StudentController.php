@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\City;
+use App\Models\User;
 
 class StudentController extends Controller
 {
@@ -59,7 +60,7 @@ class StudentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::with('user')->findOrFail($id);
 
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255|min:2',
@@ -69,6 +70,10 @@ class StudentController extends Controller
             'birth_date' => 'nullable|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
             'address' => 'nullable|string|max:500',
             'city_id' => 'required|exists:cities,id',
+        ]);
+        $student->user->update([
+            'name' => $validatedData['first_name'],
+            'email' => $validatedData['email'],
         ]);
 
         $student->update($validatedData);

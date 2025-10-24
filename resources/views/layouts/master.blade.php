@@ -23,10 +23,10 @@
             </ul>
             <div class="navigation__mobile-menu">
                 <div class="navigation__mobile-item-container">
-                    <a class="navigation__mobile-item" href="">
+                    <a class="navigation__mobile-item" href="{{ route('home.index') }}">
                         <i class="icon ri-home-line"></i>
                     </a>
-                    <a class="navigation__mobile-item" href="">
+                    <a class="navigation__mobile-item" href="{{ route('students.index') }}">
                         <i class="icon ri-group-2-line"></i>
                     </a>
                     <a class="navigation__mobile-item" href="">

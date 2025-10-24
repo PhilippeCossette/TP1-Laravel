@@ -13,32 +13,33 @@
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     min-width: 0;
-    position: relative; /* key: allows absolute children like title */
+    position: relative;
     transition: flex 0.5s ease, filter 0.3s ease;
 }
 
 .grow-effect-img {
     width: 100%;
     height: 100%;
-    max-width: 100%;
     object-fit: cover;
     display: block;
     cursor: pointer;
     filter: brightness(70%);
-
-    transition: filter 0.3s ease;
+    transition: filter 0.3s ease, transform 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
 }
 
 .grow-effect-title {
     position: absolute;
-    top: 1em; /* stick to bottom */
-    left: 1em; /* stick to left */
+    top: 1em;
+    left: 1em;
     color: white;
     font-size: 1.5em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    z-index: 1; /* ensures text is above img */
-    pointer-events: none; /* lets hover still trigger on parent */
-
+    z-index: 1;
+    pointer-events: none;
     opacity: 1;
     transition: opacity 0.7s ease 0.35s;
 }
@@ -52,6 +53,7 @@
     transform: scale(1.05);
 }
 
+/* Desktop content */
 .grow-effect-content {
     position: absolute;
     color: white;
@@ -60,7 +62,6 @@
     width: 100%;
     z-index: 3;
     opacity: 0;
-
     transition: opacity 0.3s ease;
 }
 
@@ -81,32 +82,67 @@
 }
 
 .grow-effect:hover .grow-effect-item:hover {
-    filter: brightness(1); /* keep the hovered one full brightness */
+    filter: brightness(1);
 }
 
 .grow-effect:hover .grow-effect-title {
-    opacity: 0; /* hide the title when hovered */
+    opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .grow-effect:hover .grow-effect-item:hover .grow-effect-title {
-    opacity: 1; /* keep the hovered one full brightness */
+    opacity: 1;
 }
 
+/* Mobile adjustments */
+/* Mobile adjustments */
 @media screen and (max-width: 600px) {
     .grow-effect {
         flex-direction: column;
         height: auto;
+        gap: 1em;
     }
 
     .grow-effect-item {
         flex: 1 1 auto;
-        max-height: 150px;
-        transition: flex 0.5s ease, max-height 0.5s ease, filter 0.3s ease;
+        max-height: 150px; /* initial height */
+        position: relative;
+        border-radius: 1em;
+        overflow: hidden; /* hide content initially */
+        transition: max-height 0.5s ease; /* smooth expansion */
     }
 
+    .grow-effect-img {
+        position: absolute; /* covers entire container */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        transition: filter 0.3s ease, transform 0.5s ease;
+    }
+
+    .grow-effect-content {
+        position: relative; /* content inside container */
+        z-index: 1;
+        opacity: 0;
+        transform: translateY(20px);
+        padding-bottom: 4em;
+        margin-bottom: 1em;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        color: white;
+    }
+
+    /* Expand container to fit content */
     .grow-effect-item:hover {
-        flex: 3; /* ✅ grow vertically */
-        max-height: 300px; /* also expand height */
+        max-height: 400px; /* expanded height */
+        transition: max-height 0.5s ease; /* smooth expansion */
+    }
+
+    .grow-effect-item:hover .grow-effect-content {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
+

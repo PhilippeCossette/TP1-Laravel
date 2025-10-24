@@ -94,3 +94,9 @@ main {
 .card-title > span {
     font-weight: bold;
 }
+@media screen and (min-width: 700px) {
+    .form-container {
+        width: 500px;
+        flex: 1 1 45%;
+    }
+}

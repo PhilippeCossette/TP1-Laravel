@@ -2,14 +2,14 @@
 @section('title', 'Modifier un étudiant')
 @section('content')
 
-<section style="min-height: 100vh;">
+<section style="min-height: 100vh; width: 100%;">
 
     <div class="container py-4 max-1200 d-flex flex-column flex-wrap align-items-center gap-3">
         <!-- Form -->
         <a style="cursor: pointer;" class="me-auto text-muted" onclick="window.location.href='{{ route('students.show', $student->id) }}'"><i class="ri-arrow-left-fill"></i>Retour</a>
-        <div class="d-flex flex-fill justify-content-center" style="min-width: 600px; max-width: 600px; flex: 1 1 45%;">
+        <div class="d-flex justify-content-center">
 
-            <form action="{{ route('students.update', $student->id) }}" method="POST" class="p-4 border shadow bg-light w-100">
+            <form action="{{ route('students.update', $student->id) }}" method="POST" class="form-container p-4 border shadow bg-light">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">

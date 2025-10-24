@@ -15,11 +15,21 @@
     <nav class="navigation">
         <div class="navigation-container max-1200">
             <a href="{{ route('home.index') }}" class="navigation-logo"><img src="{{ asset('images/Maisonneuve-logo.jpg') }}" alt="Logo "></a>
-            <ul class="navigation-items-container d-flex gap-3 align-items-center list-unstyled">
+            <ul class="navigation-items-container d-flex gap-4 align-items-center list-unstyled">
                 <li class="navigation-item"><a href="{{ route('home.index') }}">Accueil</a></li>
                 <li class="navigation-item"><a href="{{ route('students.index') }}">Étudiants</a></li>
                 <li class="navigation-item"><a href="">Contact</a></li>
-                <li class=""><a href="{{ route('login') }}" class="btn btn-primary">Login</a></li>
+                @guest
+                <li class=""><a href="{{ route('login') }}" class="btn btn-primary">Connexion</a></li>
+                @endguest
+                @auth
+                <a href="{{ route('user.profile') }}">Bonjour ,{{ auth()->user()->name }}</a>
+
+                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-danger"><i class="ri-shut-down-line"></i></button>
+                </form>
+                @endauth
             </ul>
             <div class="navigation__mobile-menu">
                 <div class="navigation__mobile-item-container">
@@ -32,8 +42,8 @@
                     <a class="navigation__mobile-item" href="">
                         <i class="icon ri-mail-line"></i>
                     </a>
-                    <a class="navigation__mobile-item" href="">
-                        <i class="icon ri-information-line"></i>
+                    <a class="navigation__mobile-item" href="{{ route('login') }}">
+                        <i class="icon ri-user-line"></i>
                     </a>
                 </div>
             </div>

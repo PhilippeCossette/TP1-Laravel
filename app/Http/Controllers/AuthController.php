@@ -50,4 +50,34 @@ class AuthController extends Controller
 
         return redirect()->route('home.index')->with('success', 'Registration successful!');
     }
+
+    public function loginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('home.index'))->with('success', 'Logged in successfully!');
+        }
+
+        return back()->withErrors([
+            'error' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home.index')->with('success', 'Logged out successfully!');
+    }
 }

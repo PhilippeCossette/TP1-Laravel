@@ -81,7 +81,7 @@
 
 @media screen and (min-width: 800px) {
     .navigation-items-container {
-        display: flex;
+        display: flex !important;
     }
 
     .navigation__mobile-menu {
@@ -91,7 +91,7 @@
 
 @media screen and (max-width: 800px) {
     .navigation-items-container {
-        display: none;
+        display: none !important;
     }
 
     .navigation-container {

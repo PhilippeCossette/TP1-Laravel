@@ -11,27 +11,16 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-
-    <style>
-        .navigation-link.dropdown-toggle,
-        .navigation__mobile-item.dropdown-toggle {
-            cursor: pointer !important;
-        }
-
-        .dropdown-menu {
-            z-index: 9999 !important;
-        }
-    </style>
 </head>
 
 <body>
     <nav class="navigation">
         <div class="navigation-container max-1200">
+
             <a href="{{ route('home.index') }}" class="navigation-logo">
                 <img src="{{ asset('images/Maisonneuve-logo.jpg') }}" alt="Logo">
             </a>
 
-            {{-- Desktop Menu --}}
             <ul class="navigation-items-container d-flex gap-4 align-items-center list-unstyled">
 
                 <li class="navigation-item">
@@ -46,14 +35,12 @@
                     <a class="navigation-link" href="#">@lang('lang.nav_contact')</a>
                 </li>
 
-                {{-- Desktop Language Dropdown --}}
+                {{-- Language Dropdown --}}
                 @php $currentLocale = session('locale', app()->getLocale()); @endphp
-                <li class="dropdown">
+                <li class="nav-item dropdown">
                     <a class="navigation-link dropdown-toggle"
                         id="desktopLangDropdown"
-                        data-bs-toggle="dropdown"
-                        role="button"
-                        aria-expanded="false">
+                        data-bs-toggle="dropdown" role="button">
 
                         @if($currentLocale === 'en')
                         <span class="fi fi-gb"></span> English
@@ -62,26 +49,25 @@
                         @endif
                     </a>
 
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="desktopLangDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item d-flex align-items-center gap-2"
-                                href="{{ route('lang', 'en') }}">
+                            <a class="dropdown-item" href="{{ route('lang', 'en') }}">
                                 <span class="fi fi-gb"></span> English
-                                @if($currentLocale === 'en') <i class="ri-check-line ms-auto"></i> @endif
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item d-flex align-items-center gap-2"
-                                href="{{ route('lang', 'fr') }}">
+                            <a class="dropdown-item" href="{{ route('lang', 'fr') }}">
                                 <span class="fi fi-fr"></span> Français
-                                @if($currentLocale === 'fr') <i class="ri-check-line ms-auto"></i> @endif
                             </a>
                         </li>
                     </ul>
                 </li>
 
+                {{-- Auth --}}
                 @guest
-                <li><a href="{{ route('login') }}" class="btn btn-primary">@lang('lang.btn_login')</a></li>
+                <li>
+                    <a href="{{ route('login') }}" class="btn btn-primary">@lang('lang.btn_login')</a>
+                </li>
                 @endguest
 
                 @auth
@@ -102,92 +88,46 @@
 
             </ul>
 
-            {{-- Mobile Menu --}}
-            <div class="navigation__mobile-menu">
-                <div class="navigation__mobile-item-container">
-
-                    <a class="navigation__mobile-item" href="{{ route('home.index') }}">
-                        <i class="icon ri-home-line"></i>
-                    </a>
-
-                    <a class="navigation__mobile-item" href="{{ route('students.index') }}">
-                        <i class="icon ri-group-2-line"></i>
-                    </a>
-
-                    <a class="navigation__mobile-item" href="#">
-                        <i class="icon ri-mail-line"></i>
-                    </a>
-
-                    {{-- Mobile Language Dropdown --}}
-                    <div class="dropdown">
-                        <a class="navigation__mobile-item dropdown-toggle"
-                            id="mobileLangDropdown"
-                            data-bs-toggle="dropdown"
-                            role="button"
-                            aria-expanded="false">
-
-                            @if($currentLocale === 'en')
-                            <span class="fi fi-gb"></span>
-                            @else
-                            <span class="fi fi-fr"></span>
-                            @endif
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center gap-2"
-                                    href="{{ route('lang', 'en') }}">
-                                    <span class="fi fi-gb"></span> English
-                                    @if($currentLocale === 'en') <i class="ri-check-line ms-auto"></i> @endif
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center gap-2"
-                                    href="{{ route('lang', 'fr') }}">
-                                    <span class="fi fi-fr"></span> Français
-                                    @if($currentLocale === 'fr') <i class="ri-check-line ms-auto"></i> @endif
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    @guest
-                    <a class="navigation__mobile-item" href="{{ route('login') }}">
-                        <i class="icon ri-user-line"></i>
-                    </a>
-                    @endguest
-
-                </div>
-            </div>
-
         </div>
     </nav>
 
 
-    <main>
-        @if (session('success'))
-        <div class="alert alert-success text-center">@lang('lang.success')</div>
-        @endif
-        @if (session('error'))
-        <div class="alert alert-danger text-center">@lang('lang.error')</div>
+    {{-- ✅ Correct content yield --}}
+    <main class="py-4">
+        @if(session('success'))
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@lang('lang.success'):</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
         @endif
 
-        @yield('content')
-        {{ app()->getLocale() }}
-        <footer class="bg-light text-dark mt-5">
-            <div class="container py-4">
-                <ul class="nav">
-                    <li><a class="nav-link text-dark" href="#">@lang('lang.nav_home')</a></li>
-                    <li><a class="nav-link text-dark" href="#">@lang('lang.nav_programs')</a></li>
-                    <li><a class="nav-link text-dark" href="#">@lang('lang.nav_about')</a></li>
-                    <li><a class="nav-link text-dark" href="#">@lang('lang.nav_contact')</a></li>
-                </ul>
-                <div class="text-center">
-                    &copy; {{ date('Y') }} {{ __('lang.college_name') }}. @lang('lang.copyright')
-                </div>
+        @if(session('error'))
+        <div class="container">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>@lang('lang.error'):</strong> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
-        </footer>
+        </div>
+        @endif
+        @yield('content')
     </main>
+
+
+    <footer class="bg-light text-dark mt-5">
+        <div class="container py-4">
+            <ul class="nav justify-content-center">
+                <li><a class="nav-link text-dark" href="#">@lang('lang.nav_home')</a></li>
+                <li><a class="nav-link text-dark" href="#">@lang('lang.nav_programs')</a></li>
+                <li><a class="nav-link text-dark" href="#">@lang('lang.nav_about')</a></li>
+                <li><a class="nav-link text-dark" href="#">@lang('lang.nav_contact')</a></li>
+            </ul>
+            <div class="text-center mt-2">
+                &copy; {{ date('Y') }} {{ __('lang.college_name') }} - @lang('lang.copyright')
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

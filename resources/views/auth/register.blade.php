@@ -1,5 +1,6 @@
 @extends('layouts.master')
-@section('title', 'Enregistrer vous!')
+@section('title', __('lang.register_title'))
+
 @section('content')
 
 <section class="login-section">
@@ -8,24 +9,26 @@
         alt="Maisonneuve College">
 
     <div class="form-login-container">
-        <h1>Créer votre compte étudiant</h1>
-        <p>Remplissez les informations ci-dessous pour accéder au portail étudiant.</p>
+        <h1>@lang('lang.register_heading')</h1>
+        <p>@lang('lang.register_description')</p>
 
         <form action="{{ route('register.store') }}" method="POST" class="row g-3">
             @csrf
 
             <!-- Row 1 -->
             <div class="col-md-6">
-                <label for="first_name" class="form-label form-label-light">Prénom</label>
-                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
+                <label for="first_name" class="form-label form-label-light">@lang('lang.first_name')</label>
+                <input type="text" class="form-control" id="first_name" name="first_name"
+                    value="{{ old('first_name') }}" required>
                 @error('first_name')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-6">
-                <label for="last_name" class="form-label form-label-light">Nom de famille</label>
-                <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
+                <label for="last_name" class="form-label form-label-light">@lang('lang.last_name')</label>
+                <input type="text" class="form-control" id="last_name" name="last_name"
+                    value="{{ old('last_name') }}" required>
                 @error('last_name')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -33,16 +36,18 @@
 
             <!-- Row 2 -->
             <div class="col-md-6">
-                <label for="email" class="form-label form-label-light">Adresse courriel</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                <label for="email" class="form-label form-label-light">@lang('lang.email')</label>
+                <input type="email" class="form-control" id="email" name="email"
+                    value="{{ old('email') }}" required>
                 @error('email')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-6">
-                <label for="phone_number" class="form-label form-label-light">Téléphone</label>
-                <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}">
+                <label for="phone_number" class="form-label form-label-light">@lang('lang.phone')</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number"
+                    value="{{ old('phone_number') }}">
                 @error('phone_number')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -50,7 +55,7 @@
 
             <!-- Row 3 -->
             <div class="col-md-6">
-                <label for="password" class="form-label form-label-light">Mot de passe</label>
+                <label for="password" class="form-label form-label-light">@lang('lang.password')</label>
                 <input type="password" class="form-control" id="password" name="password" required>
                 @error('password')
                 <span class="text-danger">{{ $message }}</span>
@@ -58,22 +63,24 @@
             </div>
 
             <div class="col-md-6">
-                <label for="password_confirmation" class="form-label form-label-light">Confirmer le mot de passe</label>
+                <label for="password_confirmation" class="form-label form-label-light">@lang('lang.password_confirm')</label>
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
             </div>
 
             <!-- Row 4 -->
             <div class="col-md-6">
-                <label for="birth_date" class="form-label form-label-light">Date de naissance</label>
-                <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ old('birth_date') }}">
+                <label for="birth_date" class="form-label form-label-light">@lang('lang.birth_date')</label>
+                <input type="date" class="form-control" id="birth_date" name="birth_date"
+                    value="{{ old('birth_date') }}">
                 @error('birth_date')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="col-md-6">
-                <label for="address" class="form-label form-label-light">Adresse</label>
-                <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
+                <label for="address" class="form-label form-label-light">@lang('lang.address')</label>
+                <input type="text" class="form-control" id="address" name="address"
+                    value="{{ old('address') }}">
                 @error('address')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -81,9 +88,9 @@
 
             <!-- Row 5 -->
             <div class="col-md-6">
-                <label for="city_id" class="form-label form-label-light">Ville</label>
+                <label for="city_id" class="form-label form-label-light">@lang('lang.city')</label>
                 <select class="form-select" id="city_id" name="city_id" required>
-                    <option value="" disabled selected>Choisir une ville</option>
+                    <option value="" disabled selected>@lang('lang.choose_city')</option>
                     @foreach ($cities as $city)
                     <option value="{{ $city->id }}" {{ old('city_id') == $city->id ? 'selected' : '' }}>
                         {{ $city->name }}
@@ -96,13 +103,13 @@
             </div>
 
             <div class="col-md-6 d-flex align-items-end">
-                <button type="submit" class="btn btn-primary w-100">Créer le compte</button>
+                <button type="submit" class="btn btn-primary w-100">@lang('lang.btn_register')</button>
             </div>
 
         </form>
     </div>
 
-    <a href="{{ route('login') }}" class="btn btn-link-custom">Déjà un compte? Connectez-vous</a>
+    <a href="{{ route('login') }}" class="btn btn-link-custom">@lang('lang.already_have_account')</a>
 </section>
 
 @endsection

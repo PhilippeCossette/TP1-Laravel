@@ -6,6 +6,10 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SetLocaleController;
+
+
+Route::middleware(['web'])->group(function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
@@ -24,3 +28,9 @@ Route::post('/register', [AuthController::class, 'store'])->name('register.store
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
+
+});

@@ -1,9 +1,23 @@
 <?php
 return [
-    "text_welcome" => "Bienvenue",
-    "text_welcome_title" => "Bienvenue dans l'application Todo List",
-    "text_welcome_paragraph" => "<p class='lead'>Il s'agit d'une simple application de liste de tâches construite avec Laravel et Bootstrap.</p><p>Commencez par créer votre première tâche !</p>",
-    'text_welcome_btn' => "Aller à la liste de tâches",
-    'text_login_msg' => "Veuillez vous connecter pour continuer.",
-    'text_copryright' => "Tous droits réservés."
+    'page_title' => 'Ma Page',
+    'college_name' => 'Collège Maisonneuve',
+
+    // Navigation
+    'nav_home' => 'Accueil',
+    'nav_students' => 'Étudiants',
+    'nav_contact' => 'Contact',
+    'nav_about' => 'À propos',
+    'nav_programs' => 'Programmes',
+    'nav_hello' => 'Bonjour',
+
+    // Footer
+    'copyright' => 'Tous droits réservés.',
+
+    // Buttons
+    'btn_login' => 'Connexion',
+
+    // Flash messages
+    'success' => 'Succès !',
+    'error' => 'Erreur !',
 ];

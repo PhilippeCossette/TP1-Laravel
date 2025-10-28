@@ -1,125 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Ma Page') - College Maisonneuve</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>@yield('title', __('lang.page_title')) - {{ __('lang.college_name') }}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
+    <style>
+        .navigation-link.dropdown-toggle,
+        .navigation__mobile-item.dropdown-toggle {
+            cursor: pointer !important;
+        }
+
+        .dropdown-menu {
+            z-index: 9999 !important;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navigation">
         <div class="navigation-container max-1200">
-            <a href="{{ route('home.index') }}" class="navigation-logo"><img src="{{ asset('images/Maisonneuve-logo.jpg') }}" alt="Logo "></a>
-            <ul class="navigation-items-container d-flex gap-4 align-items-center list-unstyled">
-                <li class="navigation-item"><a href="{{ route('home.index') }}">Accueil</a></li>
-                <li class="navigation-item"><a href="{{ route('students.index') }}">Étudiants</a></li>
-                <li class="navigation-item"><a href="">Contact</a></li>
-                @guest
-                <li class=""><a href="{{ route('login') }}" class="btn btn-primary">Connexion</a></li>
-                @endguest
-                @auth
-                <a href="{{ route('user.profile') }}">Bonjour ,{{ auth()->user()->name }}</a>
+            <a href="{{ route('home.index') }}" class="navigation-logo">
+                <img src="{{ asset('images/Maisonneuve-logo.jpg') }}" alt="Logo">
+            </a>
 
-                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="submit" class="btn btn-danger"><i class="ri-shut-down-line"></i></button>
-                </form>
+            {{-- Desktop Menu --}}
+            <ul class="navigation-items-container d-flex gap-4 align-items-center list-unstyled">
+
+                <li class="navigation-item">
+                    <a class="navigation-link" href="{{ route('home.index') }}">@lang('lang.nav_home')</a>
+                </li>
+
+                <li class="navigation-item">
+                    <a class="navigation-link" href="{{ route('students.index') }}">@lang('lang.nav_students')</a>
+                </li>
+
+                <li class="navigation-item">
+                    <a class="navigation-link" href="#">@lang('lang.nav_contact')</a>
+                </li>
+
+                {{-- Desktop Language Dropdown --}}
+                @php $currentLocale = session('locale', app()->getLocale()); @endphp
+                <li class="dropdown">
+                    <a class="navigation-link dropdown-toggle"
+                        id="desktopLangDropdown"
+                        data-bs-toggle="dropdown"
+                        role="button"
+                        aria-expanded="false">
+
+                        @if($currentLocale === 'en')
+                        <span class="fi fi-gb"></span> English
+                        @else
+                        <span class="fi fi-fr"></span> Français
+                        @endif
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="desktopLangDropdown">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2"
+                                href="{{ route('lang', 'en') }}">
+                                <span class="fi fi-gb"></span> English
+                                @if($currentLocale === 'en') <i class="ri-check-line ms-auto"></i> @endif
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2"
+                                href="{{ route('lang', 'fr') }}">
+                                <span class="fi fi-fr"></span> Français
+                                @if($currentLocale === 'fr') <i class="ri-check-line ms-auto"></i> @endif
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                @guest
+                <li><a href="{{ route('login') }}" class="btn btn-primary">@lang('lang.btn_login')</a></li>
+                @endguest
+
+                @auth
+                <li class="navigation-item">
+                    <a class="navigation-link" href="{{ route('user.profile') }}">
+                        @lang('lang.nav_hello'), {{ auth()->user()->name }}
+                    </a>
+                </li>
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">
+                            <i class="ri-shut-down-line"></i>
+                        </button>
+                    </form>
+                </li>
                 @endauth
+
             </ul>
+
+            {{-- Mobile Menu --}}
             <div class="navigation__mobile-menu">
                 <div class="navigation__mobile-item-container">
+
                     <a class="navigation__mobile-item" href="{{ route('home.index') }}">
                         <i class="icon ri-home-line"></i>
                     </a>
+
                     <a class="navigation__mobile-item" href="{{ route('students.index') }}">
                         <i class="icon ri-group-2-line"></i>
                     </a>
-                    <a class="navigation__mobile-item" href="">
+
+                    <a class="navigation__mobile-item" href="#">
                         <i class="icon ri-mail-line"></i>
                     </a>
-                    <a class="navigation__mobile-item" href="{{ route('login') }}">
-                        <i class="icon ri-user-line"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
 
+                    {{-- Mobile Language Dropdown --}}
+                    <div class="dropdown">
+                        <a class="navigation__mobile-item dropdown-toggle"
+                            id="mobileLangDropdown"
+                            data-bs-toggle="dropdown"
+                            role="button"
+                            aria-expanded="false">
 
-    </nav>
+                            @if($currentLocale === 'en')
+                            <span class="fi fi-gb"></span>
+                            @else
+                            <span class="fi fi-fr"></span>
+                            @endif
+                        </a>
 
-    <main>
-        @if (session('success'))
-        <div class="container my-4">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Succès !</strong> {{session('success')}}.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-        @endif
-        @if (session('error'))
-        <div class="container my-4">
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Erreur !</strong> {{session('error')}}.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-        @endif
-
-        </div>
-
-
-        @yield('content')
-
-        <footer class="bg-light text-dark mt-5">
-            <div class="container py-4">
-                <div class="row align-items-center">
-
-                    <!-- Navigation Links -->
-                    <div class="col-md-6 mb-3 mb-md-0">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark px-2" href="#">Accueil</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center gap-2"
+                                    href="{{ route('lang', 'en') }}">
+                                    <span class="fi fi-gb"></span> English
+                                    @if($currentLocale === 'en') <i class="ri-check-line ms-auto"></i> @endif
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark px-2" href="#">Programmes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark px-2" href="#">À propos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark px-2" href="#">Contact</a>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center gap-2"
+                                    href="{{ route('lang', 'fr') }}">
+                                    <span class="fi fi-fr"></span> Français
+                                    @if($currentLocale === 'fr') <i class="ri-check-line ms-auto"></i> @endif
+                                </a>
                             </li>
                         </ul>
                     </div>
 
-                    <!-- Copyright / Version -->
-                    <div class="col-md-6 text-md-end text-center">
-                        <small class="d-block">
-                            &copy; {{ date('Y') }} Collège Maisonneuve. Tous droits réservés.
-                        </small>
-                        <small class="d-block text-muted">
-                            Version 1.0.0
-                        </small>
-                    </div>
+                    @guest
+                    <a class="navigation__mobile-item" href="{{ route('login') }}">
+                        <i class="icon ri-user-line"></i>
+                    </a>
+                    @endguest
 
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <main>
+        @if (session('success'))
+        <div class="alert alert-success text-center">@lang('lang.success')</div>
+        @endif
+        @if (session('error'))
+        <div class="alert alert-danger text-center">@lang('lang.error')</div>
+        @endif
+
+        @yield('content')
+        {{ app()->getLocale() }}
+        <footer class="bg-light text-dark mt-5">
+            <div class="container py-4">
+                <ul class="nav">
+                    <li><a class="nav-link text-dark" href="#">@lang('lang.nav_home')</a></li>
+                    <li><a class="nav-link text-dark" href="#">@lang('lang.nav_programs')</a></li>
+                    <li><a class="nav-link text-dark" href="#">@lang('lang.nav_about')</a></li>
+                    <li><a class="nav-link text-dark" href="#">@lang('lang.nav_contact')</a></li>
+                </ul>
+                <div class="text-center">
+                    &copy; {{ date('Y') }} {{ __('lang.college_name') }}. @lang('lang.copyright')
                 </div>
             </div>
         </footer>
     </main>
 
-
-
-
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
 
 </html>

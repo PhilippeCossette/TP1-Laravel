@@ -22,33 +22,31 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title_en' => 'nullable|string|max:255',
-            'title_fr' => 'nullable|string|max:255',
-            'content_en' => 'nullable|string',
-            'content_fr' => 'nullable|string',
+            'title_en'   => 'required_with:content_en|nullable|string|max:255',
+            'content_en' => 'required_with:title_en|nullable|string',
+
+            'title_fr'   => 'required_with:content_fr|nullable|string|max:255',
+            'content_fr' => 'required_with:title_fr|nullable|string',
+        ], [
+            'title_en.required_with'   => 'If you enter an English title, you must enter English content too.',
+            'content_en.required_with' => 'If you enter English content, you must enter an English title too.',
+            'title_fr.required_with'   => 'Si vous saisissez un titre en français, vous devez aussi ajouter du contenu.',
+            'content_fr.required_with' => 'Si vous saisissez du contenu en français, vous devez aussi ajouter un titre.',
         ]);
 
-        if (!$request->title_en && !$request->title_fr) {
-            return back()->with('error', 'Title required in at least one language!');
-        }
-
-        $title = array_filter([
-            'en' => $request->title_en,
-            'fr' => $request->title_fr,
+        Post::create([
+            'title' => array_filter([
+                'en' => $request->title_en,
+                'fr' => $request->title_fr,
+            ]),
+            'content' => array_filter([
+                'en' => $request->content_en,
+                'fr' => $request->content_fr,
+            ]),
+            'user_id' => auth()->id(),
         ]);
 
-        $content = array_filter([
-            'en' => $request->content_en,
-            'fr' => $request->content_fr,
-        ]);
-
-        $post = Post::create([
-            'title' => $title,
-            'content' => $content,
-            'user_id' => Auth::id(),
-        ]);
-
-        return redirect()->route('posts.show', $post)->with('success', 'Post created!');
+        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
     }
 
     public function show(Post $post)
@@ -67,32 +65,41 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        if ($post->user_id !== Auth::id()) {
-            return back()->with('error', 'You cannot edit this post!');
+        if ($post->user_id !== auth()->id()) {
+            return back()->with('error', 'Not authorized.');
         }
 
-        $title = array_filter([
-            'en' => $request->title_en,
-            'fr' => $request->title_fr,
-        ]);
+        $request->validate([
+            'title_en'   => 'required_with:content_en|nullable|string|max:255',
+            'content_en' => 'required_with:title_en|nullable|string',
 
-        $content = array_filter([
-            'en' => $request->content_en,
-            'fr' => $request->content_fr,
+            'title_fr'   => 'required_with:content_fr|nullable|string|max:255',
+            'content_fr' => 'required_with:title_fr|nullable|string',
+        ], [
+            'content_en.required_with'   => 'If you enter an English title, you must enter English content too.',
+            'title_en.required_with' => 'If you enter English content, you must enter an English title too.',
+            'content_fr.required_with'   => 'Si vous saisissez un titre en français, vous devez aussi ajouter du contenu.',
+            'title_fr.required_with' => 'Si vous saisissez du contenu en français, vous devez aussi ajouter un titre.',
         ]);
 
         $post->update([
-            'title' => $title,
-            'content' => $content,
+            'title' => array_filter([
+                'en' => $request->title_en,
+                'fr' => $request->title_fr,
+            ]),
+            'content' => array_filter([
+                'en' => $request->content_en,
+                'fr' => $request->content_fr,
+            ]),
         ]);
 
-        return redirect()->route('posts.show', $post)->with('success', 'Post updated!');
+        return redirect()->route('posts.show', $post->id)->with('success', 'Post updated successfully!');
     }
 
     public function destroy(Post $post)
     {
-        if ($post->user_id !== Auth::id()) {
-            return back()->with('error', 'You cannot delete this post!');
+        if ($post->user_id !== auth()->id()) {
+            return back()->with('error', 'Not authorized.');
         }
 
         $post->delete();

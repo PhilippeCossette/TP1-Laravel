@@ -1,7 +1,10 @@
 <?php
 return [
+
+    // App
     'page_title' => 'My Page',
     'college_name' => 'College Maisonneuve',
+    'copyright' => 'All rights reserved.',
 
     // Navigation
     'nav_home' => 'Home',
@@ -10,18 +13,22 @@ return [
     'nav_about' => 'About',
     'nav_programs' => 'Programs',
     'nav_hello' => 'Hello',
+    'nav_forum' => 'Forum',
 
-    // Footer
-    'copyright' => 'All rights reserved.',
+    // Flash Messages
+    'success' => 'Success!',
+    'error' => 'Error!',
 
     // Buttons
     'btn_login' => 'Login',
     'btn_learn_more' => 'Learn more',
     'btn_contact_us' => 'Contact us',
-
-    // Flash messages
-    'success' => 'Success!',
-    'error' => 'Error!',
+    'btn_update_post' => 'Update Post',
+    'btn_view_details' => 'View details',
+    'btn_delete' => 'Delete',
+    'btn_edit' => 'Edit',
+    'btn_update_student' => 'Update Student',
+    'btn_register' => 'Create account',
 
     // Home Page
     'home_title' => 'Home',
@@ -31,31 +38,27 @@ return [
     'why_choose' => 'Why Choose Collège Maisonneuve?',
     'dynamic_community' => 'Dynamic Community',
     'dynamic_community_desc' => 'Join a diverse and engaged student community.',
-
     'academic_excellence' => 'Academic Excellence',
     'academic_excellence_desc' => 'Benefit from high-quality academic programs and modern resources.',
-
     'ideal_location' => 'Ideal Location',
-    'ideal_location_desc' => 'A campus in the heart of the city with easy access to public transportation.',
+    'ideal_location_desc' => 'A campus in the heart of the city with access to public transportation.',
 
     'our_programs' => 'Our Programs',
     'program_nursing' => 'Nursing',
-    'program_nursing_desc' => 'Combining theory and practice to train competent and empathetic professionals.',
-
+    'program_nursing_desc' => 'Hands-on and theoretical learning for healthcare careers.',
     'program_software' => 'Software Programming',
-    'program_software_desc' => 'Prepare for an exciting career in software development.',
-
+    'program_software_desc' => 'Prepare for a career in software development.',
     'program_photography' => 'Photography',
-    'program_photography_desc' => 'Master techniques to capture stunning images and tell visual stories.',
-
+    'program_photography_desc' => 'Master photography and visual storytelling.',
     'program_cooking' => 'Cooking',
-    'program_cooking_desc' => 'Learn to master culinary techniques and create delicious dishes.',
-
+    'program_cooking_desc' => 'Learn culinary techniques and create delicious meals.',
     'program_other' => 'Other Program',
-    'program_other_desc' => 'A program that combines theory and practice to develop skilled professionals.',
+    'program_other_desc' => 'Programs combining theory and real-world experience.',
 
+    // Student Form
     'edit_student_title' => 'Edit Student',
-    'back' => 'Back',
+    'student_list_title' => 'Student List',
+    'student_details_title' => 'Student Details',
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
     'email' => 'Email',
@@ -63,25 +66,45 @@ return [
     'birth_date' => 'Birth Date',
     'address' => 'Address',
     'city' => 'City',
-    'choose_city' => 'Choose a city',
-    'btn_update_student' => 'Update Student',
-    'student_list_title' => 'Student List',
-    'btn_view_details' => 'View details',
-    'btn_delete' => 'Delete',
-    'btn_edit' => 'Edit',
-    'student_details_title' => 'Student Details',
     'country' => 'Country',
+    'choose_city' => 'Choose a city',
+    'back' => 'Back',
 
+    // Login / Register
     'login_title' => 'Login',
     'login_heading' => 'Login to Student Portal',
-    'login_description' => 'Login to access assignments, grades, and more.',
+    'login_description' => 'Access assignments, grades and more.',
     'password' => 'Password',
     'no_account_create' => 'No account? Create one',
     'register_title' => 'Register',
     'register_heading' => 'Create your student account',
-    'register_description' => 'Fill in the information below to access the student portal.',
+    'register_description' => 'Fill in the information below.',
     'password_confirm' => 'Confirm password',
-    'btn_register' => 'Create account',
     'already_have_account' => 'Already have an account? Log in',
 
+    // Blog Posts
+    'edit_post_title' => 'Edit Post',
+    'title_en' => 'Title (English)',
+    'content_en' => 'Content (English)',
+    'title_fr' => 'Title (French)',
+    'content_fr' => 'Content (French)',
+
+    'forum' => 'Forum',
+    'new_post' => 'New Post',
+    'view_post' => 'View Post',
+    'publish' => 'Publish',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'no_posts' => 'No posts available.',
+
+    'reactions' => 'Reactions',
+    'like' => 'Like',
+    'dislike' => 'Dislike',
+    'comments' => 'Comments',
+    'add_comment' => 'Add a comment...',
+    'post_comment' => 'Post Comment',
+    'fallback_notice' => 'Translation not available in this language. Showing English.',
+
+    'no_translations' => '⚠ Translation not available in this language. Showing French.',
+    'my_posts' => 'My Posts',
 ];

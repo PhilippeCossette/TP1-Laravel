@@ -20,11 +20,11 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         if (auth()->id() !== $student->user_id) {
-            return redirect()->route('students.index')->with('error', 'Vous n\'êtes pas autorisé à supprimer cet étudiant.');
+            return redirect()->route('students.index')->with('error', __('lang.no-authorization'));
         }
 
         $student->delete();
-        return redirect()->route('students.index')->with('success', 'Etudiant supprimé avec succès.');
+        return redirect()->route('students.index')->with('success', __('validation.student_delete_success'));
     }
 
     public function create()
@@ -47,7 +47,7 @@ class StudentController extends Controller
 
         Student::create($validatedData);
 
-        return redirect()->route('students.index')->with('success', 'Etudiant créé avec succès');
+        return redirect()->route('students.index')->with('success', __('lang.student_create_success'));
     }
 
     public function show($id)
@@ -61,7 +61,7 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         if (auth()->id() !== $student->user_id) {
-            return redirect()->route('students.index')->with('error', 'Not authorized.');
+            return redirect()->route('students.index')->with('error', __('lang.no-authorization'));
         }
 
 
@@ -75,7 +75,7 @@ class StudentController extends Controller
         $student = Student::with('user')->findOrFail($id);
 
         if (auth()->id() !== $student->user_id) {
-            return redirect()->route('students.index')->with('error', 'Not authorized.');
+            return redirect()->route('students.index')->with('error', __('lang.no-authorization'));
         }
 
         $validatedData = $request->validate([
@@ -94,6 +94,6 @@ class StudentController extends Controller
 
         $student->update($validatedData);
 
-        return redirect()->route('students.show', $student->id)->with('success', 'Etudiant mis à jour avec succès.');
+        return redirect()->route('students.show', $student->id)->with('success', __('lang.student_update_success'));
     }
 }

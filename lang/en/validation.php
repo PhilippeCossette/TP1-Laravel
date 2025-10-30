@@ -166,6 +166,12 @@ return [
     'ulid' => 'The :attribute field must be a valid ULID.',
     'uuid' => 'The :attribute field must be a valid UUID.',
 
+    'post_success' => 'Post created successfully!',
+    'post_update_success' => 'Post updated successfully!',
+
+    'student_create_success' => 'Student created successfully!',
+    'student_update_success' => 'Student updated successfully!',
+    'student_delete_success' => 'Student deleted successfully!',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

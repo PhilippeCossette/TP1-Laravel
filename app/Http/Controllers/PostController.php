@@ -46,7 +46,7 @@ class PostController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
+        return redirect()->route('posts.index')->with('success', __('validation.post_success'));
     }
 
     public function show(Post $post)
@@ -57,7 +57,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         if ($post->user_id !== Auth::id()) {
-            return back()->with('error', 'You cannot edit this post!');
+            return back()->with('error', __('lang.no-authorization'));
         }
 
         return view('posts.edit', compact('post'));
@@ -66,7 +66,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         if ($post->user_id !== auth()->id()) {
-            return back()->with('error', 'Not authorized.');
+            return back()->with('error', __('lang.no-authorization'));
         }
 
         $request->validate([
@@ -93,16 +93,16 @@ class PostController extends Controller
             ]),
         ]);
 
-        return redirect()->route('posts.show', $post->id)->with('success', 'Post updated successfully!');
+        return redirect()->route('posts.show', $post->id)->with('success', __('validation.post_update_success'));
     }
 
     public function destroy(Post $post)
     {
         if ($post->user_id !== auth()->id()) {
-            return back()->with('error', 'Not authorized.');
+            return back()->with('error', __('lang.no-authorization'));
         }
 
         $post->delete();
-        return redirect()->route('posts.index')->with('success', 'Post deleted!');
+        return redirect()->route('posts.index')->with('success', __('validation.post_delete_success'));
     }
 }

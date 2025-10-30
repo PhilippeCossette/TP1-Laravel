@@ -26,6 +26,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/documents/{document}/edit', [DocumentController::class, 'edit'])->name('documents.edit');
         Route::put('/documents/{document}', [DocumentController::class, 'update'])->name('documents.update');
         Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+        Route::get('/documents/{document}/download', [DocumentController::class, 'download'])->name('documents.download');
     });
 
     Route::get('/', [HomeController::class, 'index'])->name('home.index');

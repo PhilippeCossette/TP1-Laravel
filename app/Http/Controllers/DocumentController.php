@@ -75,4 +75,11 @@ class DocumentController extends Controller
 
         return redirect()->route('documents.index')->with('success', __('lang.text_deleted'));
     }
+
+    public function download(Document $document)
+    {
+        if (!Auth::check()) abort(403);
+
+        return response()->download(storage_path('app/public/' . $document->file_path));
+    }
 }

@@ -22,9 +22,13 @@
             <td>{{ $doc->user->name }}</td>
             <td>{{ $doc->created_at->format('Y-m-d') }}</td>
             <td>
-                <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">@lang('lang.text_download')</a>
+                <a href="{{ route('documents.download', $doc->id) }}" class="btn btn-sm btn-outline-primary">@lang('lang.text_download')</a>
+
                 @if($doc->user_id === Auth::id())
-                <a href="{{ route('documents.edit', $doc->id) }}" class="btn btn-sm btn-outline-success">@lang('lang.text_edit')</a>
+                <a href="{{ asset('storage/' . $doc->file_path) }}" download class="btn btn-sm btn-outline-primary">
+                    @lang('lang.text_download')
+                </a>
+
                 <form action="{{ route('documents.destroy', $doc->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')

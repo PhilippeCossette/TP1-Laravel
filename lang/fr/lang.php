@@ -30,7 +30,7 @@ return [
     'btn_edit' => 'Modifier',
     'btn_update_student' => 'Modifier l\'étudiant',
     'btn_register' => 'Créer le compte',
-    'no_posts' => 'Aucun article disponible.',
+
     // Home Page
     'home_title' => 'Accueil',
     'welcome_title' => 'Bienvenue au Collège Maisonneuve',
@@ -39,10 +39,8 @@ return [
     'why_choose' => 'Pourquoi choisir le Collège Maisonneuve ?',
     'dynamic_community' => 'Communauté dynamique',
     'dynamic_community_desc' => 'Rejoignez une communauté étudiante diversifiée et engagée.',
-
     'academic_excellence' => 'Excellence académique',
     'academic_excellence_desc' => 'Profitez de programmes académiques de haute qualité et de ressources modernes.',
-
     'ideal_location' => 'Emplacement idéal',
     'ideal_location_desc' => 'Un campus situé au cœur de la ville, près des transports en commun.',
 
@@ -98,6 +96,8 @@ return [
     'publish' => 'Publier',
     'edit' => 'Modifier',
     'delete' => 'Supprimer',
+    'no_posts' => 'Aucun article disponible.',
+
     'reactions' => 'Réactions',
     'like' => 'Aimer',
     'dislike' => 'Ne pas aimer',
@@ -109,8 +109,10 @@ return [
     'no_translations' => '⚠ Traduction non disponible dans cette langue. Affichage en Anglais.',
     'my_posts' => 'Mes articles',
 
+    // Documents
     'text_documents' => 'Répertoire des documents',
     'text_upload' => 'Téléverser un document',
+    'text_title' => 'Titre',
     'text_title_fr' => 'Titre (Français)',
     'text_title_en' => 'Titre (Anglais)',
     'text_file' => 'Fichier (PDF, ZIP, DOC)',
@@ -124,4 +126,9 @@ return [
     'text_success' => 'Document téléversé avec succès!',
     'text_updated' => 'Document modifié avec succès!',
     'text_deleted' => 'Document supprimé avec succès!',
+    'no_documents' => 'Aucun document disponible.',
+
+    //Validation
+    'validation-title-either' => 'L\'un des champs Titre (FR) ou Titre (EN) est requis.',
+    'no-authorization' => 'Vous n\'êtes pas autorisé à effectuer cette action.',
 ];

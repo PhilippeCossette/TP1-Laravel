@@ -109,8 +109,10 @@ return [
     'no_translations' => '⚠ Translation not available in this language. Showing French.',
     'my_posts' => 'My Posts',
 
+    // Documents
     'text_documents' => 'Documents Directory',
     'text_upload' => 'Upload a Document',
+    'text_title' => 'Title',
     'text_title_fr' => 'Title (French)',
     'text_title_en' => 'Title (English)',
     'text_file' => 'File (PDF, ZIP, DOC)',
@@ -124,4 +126,9 @@ return [
     'text_success' => 'Document uploaded successfully!',
     'text_updated' => 'Document updated successfully!',
     'text_deleted' => 'Document deleted successfully!',
+    'no_documents' => 'No documents available.',
+
+    //Validation
+    'validation-title-either' => 'One of Title (FR) or Title (EN) is required.',
+    'no-authorization' => 'You are not authorized to perform this action.',
 ];

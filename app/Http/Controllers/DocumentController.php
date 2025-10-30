@@ -29,47 +29,75 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title_fr' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
-            'file' => 'required|mimes:pdf,zip,doc,docx|max:5120'
+            'title_fr' => 'required_without:title_en|string|max:255',
+            'title_en' => 'required_without:title_fr|string|max:255',
+            'file'     => 'required|mimes:pdf,zip,doc,docx|max:5120',
+        ], [
+            'title_fr.required_without' => __('lang.validation-title-either'),
+            'title_en.required_without' => __('lang.validation-title-either'),
         ]);
 
         $path = $request->file('file')->store('docs', 'public');
 
+        $payload = array_filter([
+            'en' => $request->title_en,
+            'fr' => $request->title_fr,
+        ]);
+
         Document::create([
-            'title_fr' => $request->title_fr,
-            'title_en' => $request->title_en,
+            'title'     => $payload,
             'file_path' => $path,
-            'user_id' => Auth::id(),
+            'user_id'   => Auth::id(),
         ]);
 
         return redirect()->route('documents.index')->with('success', __('lang.text_success'));
     }
 
-    // Edit only if you’re owner
     public function edit(Document $document)
     {
-        if ($document->user_id !== Auth::id()) abort(403);
+        if ($document->user_id !== Auth::id()) {
+            return back()->with('error', __('lang.no-authorization'));
+        };
         return view('documents.edit', compact('document'));
     }
 
     public function update(Request $request, Document $document)
     {
-        if ($document->user_id !== Auth::id()) abort(403);
+        if ($document->user_id !== Auth::id()) {
+            return back()->with('error', __('lang.no-authorization'));
+        }
 
         $request->validate([
-            'title_fr' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
+            'title_fr' => 'required_without:title_en|string|max:255',
+            'title_en' => 'required_without:title_fr|string|max:255',
+            'file'     => 'mimes:pdf,zip,doc,docx|max:5120',
+        ], [
+            'title_fr.required_without' => __('lang.validation-title-either'),
+            'title_en.required_without' => __('lang.validation-title-either'),
         ]);
 
-        $document->update($request->only('title_fr', 'title_en'));
+        $payload = array_filter([
+            'en' => $request->title_en,
+            'fr' => $request->title_fr
+        ]);
+
+        if ($request->hasFile('file')) {
+            Storage::disk('public')->delete($document->file_path);
+            $path = $request->file('file')->store('docs', 'public');
+            $document->file_path = $path;
+        }
+
+        $document->title = $payload;
+        $document->save();
 
         return redirect()->route('documents.index')->with('success', __('lang.text_updated'));
     }
 
     public function destroy(Document $document)
     {
-        if ($document->user_id !== Auth::id()) abort(403);
+        if ($document->user_id !== Auth::id()) {
+            return back()->with('error', __('lang.no-authorization'));
+        };
         Storage::disk('public')->delete($document->file_path);
         $document->delete();
 
@@ -78,7 +106,9 @@ class DocumentController extends Controller
 
     public function download(Document $document)
     {
-        if (!Auth::check()) abort(403);
+        if ($document->user_id !== Auth::id()) {
+            return back()->with('error', __('lang.no-authorization'));
+        }
 
         return response()->download(storage_path('app/public/' . $document->file_path));
     }

@@ -9,11 +9,10 @@ class Document extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title_fr',
-        'title_en',
-        'file_path',
-        'user_id'
+    protected $fillable = ['title', 'file_path', 'user_id'];
+
+    protected $casts = [
+        'title' => 'array',
     ];
 
     public function user()

@@ -71,53 +71,7 @@
             </div>
 
         </div>
-        @auth
-        {{-- Only show posts if this profile belongs to logged in user --}}
-        @if(auth()->id() === $student->user_id)
-
-        <div class="container my-5">
-
-            <h3 class="mb-3">
-                <i class="ri-chat-3-line"></i> @lang('lang.my_posts')
-            </h3>
-
-            @if($posts->count() == 0)
-            <p class="text-muted">@lang('lang.no_posts_yet')</p>
-            <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm">
-                <i class="ri-add-circle-line"></i> @lang('lang.new_post')
-            </a>
-            @else
-            @foreach($posts as $post)
-
-            @php
-            $locale = app()->getLocale();
-            $title = $post->title[$locale] ?? $post->title['en'];
-            @endphp
-
-            <div class="card mb-3 shadow-sm">
-                <div class="card-body">
-                    <h6 class="fw-bold">{{ $title }}</h6>
-
-                    <small class="text-muted">
-                        {{ $post->created_at->format('Y-m-d H:i') }}
-                    </small>
-
-                    <div class="mt-2">
-                        <a href="{{ route('posts.show', $post) }}" class="btn btn-outline-primary btn-sm">
-                            @lang('lang.view_post')
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            @endforeach
-            @endif
-
-        </div>
-
-        @endif
-        @endauth
-
+        
     </div>
 </section>
 

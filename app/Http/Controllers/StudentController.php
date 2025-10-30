@@ -61,8 +61,10 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         if (auth()->id() !== $student->user_id) {
-            return redirect()->route('students.index')->with('error', 'Vous n\'êtes pas autorisé à modifier cet étudiant.');
+            return redirect()->route('students.index')->with('error', 'Not authorized.');
         }
+
+
 
         $cities = City::all();
         return view('student-edit', ['student' => $student, 'cities' => $cities]);
@@ -71,6 +73,10 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::with('user')->findOrFail($id);
+
+        if (auth()->id() !== $student->user_id) {
+            return redirect()->route('students.index')->with('error', 'Not authorized.');
+        }
 
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255|min:2',

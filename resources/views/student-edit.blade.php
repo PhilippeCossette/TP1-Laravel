@@ -7,7 +7,7 @@
 
     <div class="container py-4 max-1200 d-flex flex-column flex-wrap align-items-center gap-3">
 
-        <!-- Back Button -->
+       
         <a style="cursor: pointer;" class="me-auto text-muted"
             onclick="window.location.href='{{ route('students.show', $student->id) }}'">
             <i class="ri-arrow-left-fill"></i> @lang('lang.back')

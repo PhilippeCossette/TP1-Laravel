@@ -98,7 +98,7 @@
 
             @guest
             <a class="navigation__mobile-item" href="{{ route('login') }}" aria-label="Login">
-                <i class="ri-login-circle-line"></i>
+                <i class="ri-account-circle-line"></i>
             </a>
             @endguest
 

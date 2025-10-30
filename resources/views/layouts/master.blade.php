@@ -17,7 +17,7 @@
 
     <nav class="navigation">
 
-        {{-- =============== DESKTOP TOP BAR =============== --}}
+
         <div class="navigation-desktop d-flex p-2">
             <div class="navigation-container d-flex flex-grow-1 max-1200 justify-content-between">
                 <a href="{{ route('home.index') }}" class="navigation-logo">
@@ -28,9 +28,11 @@
                     <li class="navigation-item "><a class="navigation-link" href="{{ route('home.index') }}">@lang('lang.nav_home')</a></li>
                     <li class="navigation-item"><a class="navigation-link" href="{{ route('students.index') }}">@lang('lang.nav_students')</a></li>
                     <li class="navigation-item"><a class="navigation-link" href="#">@lang('lang.nav_contact')</a></li>
+                    @auth
+                    <li class="navigation-item"><a class="navigation-link" href="{{ route('documents.index') }}">@lang('lang.nav_documents')</a></li>
                     <li class="navigation-item"><a class="navigation-link" href="{{ route('posts.index') }}">@lang('lang.nav_forum')</a></li>
+                    @endauth
 
-                    {{-- Language (desktop) --}}
                     <li class="navigation-item dropdown">
                         <a class="dropdown-toggle navigation-link" data-bs-toggle="dropdown" role="button">
                             @if($currentLocale === 'en')
@@ -66,7 +68,7 @@
             </div>
         </div>
 
-        {{-- =============== MOBILE LEFT SIDEBAR =============== --}}
+
         <div class="navigation-sidebar">
             <a href="{{ route('home.index') }}" class="navigation-logo-sidebar">
                 <img src="{{ asset('images/Maisonneuve-logo.jpg') }}" alt="Logo">

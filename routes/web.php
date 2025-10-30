@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\DocumentController;
 
 
 Route::middleware(['web'])->group(function () {
@@ -18,6 +19,13 @@ Route::middleware(['web'])->group(function () {
         Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
         Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
         Route::resource('/posts', PostController::class);
+
+        Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
+        Route::get('/documents/create', [DocumentController::class, 'create'])->name('documents.create');
+        Route::post('/documents', [DocumentController::class, 'store'])->name('documents.store');
+        Route::get('/documents/{document}/edit', [DocumentController::class, 'edit'])->name('documents.edit');
+        Route::put('/documents/{document}', [DocumentController::class, 'update'])->name('documents.update');
+        Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
     });
 
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -33,7 +41,7 @@ Route::middleware(['web'])->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    
+
 
     Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 });

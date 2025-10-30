@@ -14,6 +14,7 @@ return [
     'nav_programs' => 'Programs',
     'nav_hello' => 'Hello',
     'nav_forum' => 'Forum',
+    'nav_documents' => 'Documents',
 
     // Flash Messages
     'success' => 'Success!',
@@ -107,4 +108,20 @@ return [
 
     'no_translations' => '⚠ Translation not available in this language. Showing French.',
     'my_posts' => 'My Posts',
+
+    'text_documents' => 'Documents Directory',
+    'text_upload' => 'Upload a Document',
+    'text_title_fr' => 'Title (French)',
+    'text_title_en' => 'Title (English)',
+    'text_file' => 'File (PDF, ZIP, DOC)',
+    'text_btn_upload' => 'Upload',
+    'text_owner' => 'Owner',
+    'text_date' => 'Date',
+    'text_actions' => 'Actions',
+    'text_download' => 'Download',
+    'text_edit' => 'Edit',
+    'text_delete' => 'Delete',
+    'text_success' => 'Document uploaded successfully!',
+    'text_updated' => 'Document updated successfully!',
+    'text_deleted' => 'Document deleted successfully!',
 ];

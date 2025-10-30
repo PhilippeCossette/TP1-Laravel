@@ -14,6 +14,7 @@ return [
     'nav_programs' => 'Programmes',
     'nav_hello' => 'Bonjour',
     'nav_forum' => 'Forum',
+    'nav_documents' => 'Documents',
 
     // Flash Messages
     'success' => 'Succès !',
@@ -107,4 +108,20 @@ return [
 
     'no_translations' => '⚠ Traduction non disponible dans cette langue. Affichage en Anglais.',
     'my_posts' => 'Mes articles',
+
+    'text_documents' => 'Répertoire des documents',
+    'text_upload' => 'Téléverser un document',
+    'text_title_fr' => 'Titre (Français)',
+    'text_title_en' => 'Titre (Anglais)',
+    'text_file' => 'Fichier (PDF, ZIP, DOC)',
+    'text_btn_upload' => 'Téléverser',
+    'text_owner' => 'Propriétaire',
+    'text_date' => 'Date',
+    'text_actions' => 'Actions',
+    'text_download' => 'Télécharger',
+    'text_edit' => 'Modifier',
+    'text_delete' => 'Supprimer',
+    'text_success' => 'Document téléversé avec succès!',
+    'text_updated' => 'Document modifié avec succès!',
+    'text_deleted' => 'Document supprimé avec succès!',
 ];

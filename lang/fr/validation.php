@@ -130,6 +130,7 @@ return [
 
     "post_success" => "Article créé avec succès !",
     "post_update_success" => "Article mis à jour avec succès !",
+    "post_delete_success" => "Article supprimé avec succès !",
 
     'student_create_success' => "Étudiant créé avec succès !",
     'student_update_success' => "Étudiant mis à jour avec succès !",

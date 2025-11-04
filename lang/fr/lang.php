@@ -105,6 +105,7 @@ return [
     'add_comment' => 'Ajouter un commentaire...',
     'post_comment' => 'Publier un commentaire',
     'fallback_notice' => 'La traduction n’est pas disponible dans cette langue. Affichage en anglais.',
+    'translation_missing' => 'Cet article n’est pas encore disponible en :lang. Affichage de l’autre langue.',
 
     'no_translations' => '⚠ Traduction non disponible dans cette langue. Affichage en Anglais.',
     'my_posts' => 'Mes articles',

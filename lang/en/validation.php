@@ -168,6 +168,7 @@ return [
 
     'post_success' => 'Post created successfully!',
     'post_update_success' => 'Post updated successfully!',
+    'post_delete_success' => 'Post deleted successfully!',
 
     'student_create_success' => 'Student created successfully!',
     'student_update_success' => 'Student updated successfully!',

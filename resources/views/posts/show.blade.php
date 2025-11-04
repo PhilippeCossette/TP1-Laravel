@@ -6,31 +6,39 @@
 
     @php
     $locale = app()->getLocale();
+    $fallbackLocale = $locale === 'en' ? 'fr' : 'en';
+    if ($locale === 'en') {
+    $fullLangName = 'English';
+    } elseif ($locale === 'fr') {
+    $fullLangName = 'Français';
+    }
+    $missingCurrentLang = empty($post->title[$locale]) || empty($post->content[$locale]);
     @endphp
 
     <!-- Post Card -->
     <div class="card shadow-sm mb-4">
         <div class="card-body">
 
-            @if(empty($post->title[$locale]) || empty($post->content[$locale]))
+            @if($missingCurrentLang)
             <p class="alert alert-warning py-2">
-                ⚠ @lang('lang.fallback_notice')
+                ⚠ @lang('lang.translation_missing', ['lang' => $fullLangName])
             </p>
             @endif
 
             <h1 class="fw-bold">
-                {{ $post->title[$locale] ?? $post->title['en'] ?? '(No title)' }}
+                {{ $post->title[$locale] ?? $post->title[$fallbackLocale] ?? '(No title)' }}
             </h1>
 
             <p class="text-muted small mb-3">
                 <i class="ri-user-line"></i>
-                {{ $post->user->name ?? __('Unknown') }} •
+                {{ $post->user->name}} •
                 <i class="ri-calendar-line"></i>
                 {{ $post->created_at->format('Y-m-d') }}
             </p>
 
             <p class="lead">
-                {!! nl2br(e($post->content[$locale] ?? $post->content['en'] ?? '(No content)')) !!}
+                <!-- Display content with line breaks preserved -->
+                {!! nl2br(e($post->content[$locale] ?? $post->content[$fallbackLocale] ?? '(No content)')) !!}
             </p>
 
         </div>

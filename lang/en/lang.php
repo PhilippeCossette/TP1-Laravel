@@ -105,7 +105,7 @@ return [
     'add_comment' => 'Add a comment...',
     'post_comment' => 'Post Comment',
     'fallback_notice' => 'Translation not available in this language. Showing English.',
-
+    'translation_missing' => 'This post is not yet available in :lang. Showing the other language.',
     'no_translations' => '⚠ Translation not available in this language. Showing French.',
     'my_posts' => 'My Posts',
 

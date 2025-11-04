@@ -15,7 +15,7 @@
         <form action="{{ route('register.store') }}" method="POST" class="row g-3">
             @csrf
 
-            <!-- Row 1 -->
+            
             <div class="col-md-6">
                 <label for="first_name" class="form-label form-label-light">@lang('lang.first_name')</label>
                 <input type="text" class="form-control" id="first_name" name="first_name"
@@ -34,7 +34,7 @@
                 @enderror
             </div>
 
-            <!-- Row 2 -->
+            
             <div class="col-md-6">
                 <label for="email" class="form-label form-label-light">@lang('lang.email')</label>
                 <input type="email" class="form-control" id="email" name="email"
@@ -53,7 +53,7 @@
                 @enderror
             </div>
 
-            <!-- Row 3 -->
+            
             <div class="col-md-6">
                 <label for="password" class="form-label form-label-light">@lang('lang.password')</label>
                 <input type="password" class="form-control" id="password" name="password" required>
@@ -67,7 +67,7 @@
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
             </div>
 
-            <!-- Row 4 -->
+           
             <div class="col-md-6">
                 <label for="birth_date" class="form-label form-label-light">@lang('lang.birth_date')</label>
                 <input type="date" class="form-control" id="birth_date" name="birth_date"
@@ -86,7 +86,7 @@
                 @enderror
             </div>
 
-            <!-- Row 5 -->
+            
             <div class="col-md-6">
                 <label for="city_id" class="form-label form-label-light">@lang('lang.city')</label>
                 <select class="form-select" id="city_id" name="city_id" required>

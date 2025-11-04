@@ -6,7 +6,6 @@
 
     <h1 class="mb-4">@lang('lang.new_post')</h1>
 
-    {{-- ✅ Flash Messages --}}
     @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -21,7 +20,7 @@
     </div>
     @endif
 
-    {{-- ✅ Form --}}
+
     <form method="POST" action="{{ route('posts.store') }}">
         @csrf
 
@@ -36,7 +35,7 @@
             @enderror
         </div>
 
-        {{-- English Content --}}
+
         <div class="mb-3">
             <label class="form-label">@lang('lang.content_en')</label>
             <textarea name="content_en" rows="4"
@@ -46,7 +45,7 @@
             @enderror
         </div>
 
-        {{-- French Title --}}
+
         <div class="mb-3">
             <label class="form-label">@lang('lang.title_fr')</label>
             <input type="text" name="title_fr"
@@ -57,7 +56,7 @@
             @enderror
         </div>
 
-        {{-- French Content --}}
+
         <div class="mb-3">
             <label class="form-label">@lang('lang.content_fr')</label>
             <textarea name="content_fr" rows="4"
@@ -67,7 +66,6 @@
             @enderror
         </div>
 
-        {{-- ✅ Action Buttons --}}
         <div class="d-flex gap-3 mt-3">
             <a href="{{ route('posts.index') }}" class="btn btn-secondary">@lang('lang.back')</a>
             <button type="submit" class="btn btn-success">@lang('lang.publish')</button>

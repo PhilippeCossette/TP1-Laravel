@@ -9,8 +9,6 @@ class SetLocaleController extends Controller
 {
     public function index(string $locale): RedirectResponse
     {
-
-
         if (! in_array($locale, config('app.locales', ['en', 'fr']), true)) {
             abort(400);
         }

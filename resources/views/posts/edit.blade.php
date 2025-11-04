@@ -6,7 +6,7 @@
 
     <h1 class="mb-4">@lang('lang.edit_post_title')</h1>
 
-    {{-- ✅ Flash Messages --}}
+
     @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -21,12 +21,12 @@
     </div>
     @endif
 
-    {{-- ✅ Form --}}
+
     <form method="POST" action="{{ route('posts.update', $post) }}">
         @csrf
         @method('PUT')
 
-        {{-- English Title --}}
+
         <div class="mb-3">
             <label class="form-label">@lang('lang.title_en')</label>
             <input type="text" class="form-control @error('title_en') is-invalid @enderror"
@@ -37,7 +37,6 @@
             @enderror
         </div>
 
-        {{-- English Content --}}
         <div class="mb-3">
             <label class="form-label">@lang('lang.content_en')</label>
             <textarea class="form-control @error('content_en') is-invalid @enderror"
@@ -47,7 +46,7 @@
             @enderror
         </div>
 
-        {{-- French Title --}}
+
         <div class="mb-3">
             <label class="form-label">@lang('lang.title_fr')</label>
             <input type="text" class="form-control @error('title_fr') is-invalid @enderror"
@@ -58,7 +57,7 @@
             @enderror
         </div>
 
-        {{-- French Content --}}
+
         <div class="mb-3">
             <label class="form-label">@lang('lang.content_fr')</label>
             <textarea class="form-control @error('content_fr') is-invalid @enderror"
